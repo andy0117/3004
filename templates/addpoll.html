@@ -1,0 +1,78 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script>
+$(function() {
+	$("#comparitive").change(function() {
+		console.log("TEST");
+		$(this).parent().parent().find(".comparitive").toggle();
+		
+	});
+	
+	$("#ranking").change(function() {
+		$(this).parent().parent().find(".ranking").toggle();
+	});
+});
+</script>
+
+<style>
+.ranking { display:none }
+.comparitive { display:none }
+.keypad { font-family:monospace }
+body { font-family:Arial }
+</style>
+
+<body>
+
+<h1>Add a Poll</h1>
+<input type="text" name="pname" id="pname" />
+
+<h2>Questions</h2>
+<button>New Question</button>
+<!-- List of Questions, should be saved in the DB as soon as New Question is clicked -->
+<div class="question">
+<input type="text" name="qname" id="qname" />
+
+<select id="qformat">
+	<option>Multiple Choice</option>
+	<option>Short Answer</option>
+</select>
+
+<label><input type="checkbox" id="comparitive" /> Comparitive</label>
+<label><input type="checkbox" id="ranking" /> Ranking</label>
+<label><input type="checkbox" id="demographic"/> Demographic</label>
+
+<blockquote>
+	<div class="comparitive">
+		<h3>Comparitive</h3>
+
+		<!-- this select should have a list of previous questions created in this very form
+			 hence why they need to be stored immediately and this select updated -->
+		<select>
+			<option></option>
+		</select>
+	</div>
+
+	<h3>Responses</h3>
+	<!-- list of responses. limit to 10 for multiple choice -->
+	<button>New Response</button>
+	
+	<div class="response">
+		<input type="text" />
+		<select class="keypad">
+			<option>---</option>
+			<option>A 1</option>
+			<option>B 2</option>
+			<option>C 3</option>
+			<option>D 4</option>
+			<option>E 5</option>
+			<option>F 6</option>
+			<option>G 7</option>
+			<option>H 8</option>
+			<option>I 9</option>
+			<option>J 0</option>
+		</select>
+		<label class="ranking"><input type="text" size="2" /> weight</label>
+	</div>
+</blockquote>
+</div>
+
+</body>
