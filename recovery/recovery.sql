@@ -61,5 +61,5 @@ CREATE TABLE Assigned(
 	pollID NUMBER(6),
 	role VARCHAR(255) NOT NULL,
 	CONSTRAINT userRole CHECK (role IN ('Web User', 'Key User', 'Poll Master', 'Poll Creator', 'Poll Admin', 'System Admin')),
-	PRIMARY KEY (userID, pollID)
+	CONSTRAINT pk_Assigned PRIMARY KEY (userID, pollID)
 );
