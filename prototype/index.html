@@ -15,11 +15,11 @@
 <!-- List of Questions, should be saved in the DB as soon as New Question is clicked -->
 <div class="question">
 	<button class="remq">x</button>
-	<input type="text" name="qname" id="qname" />
+	<input type="text" name="qname" class="qname" />
 
-	<select id="qformat">
-		<option>Multiple Choice</option>
-		<option>Short Answer</option>
+	<select class="qformat">
+		<option value="M">Multiple Choice</option>
+		<option value="S">Short Answer</option>
 	</select>
 
 	<label><input type="checkbox" class="comparitivebox" /> Comparitive</label>
@@ -36,7 +36,7 @@
 			<!-- this select should have a list of previous questions created in this very form
 				 hence why they need to be stored immediately and this select updated -->
 			<select>
-				<option></option>
+				<option value="NULL">Select a previous Question</option>
 			</select>
 		</div>
 
