@@ -1,0 +1,24 @@
+API
+===
+
+#POLL:
+poll.jsp?action=list
+poll.jsp?action=create&name=[name]&location=[location]
+poll.jsp?action=delete&id=[pollID]
+poll.jsp?action=update&name=[name]&location=[location]&id=[pollID]
+
+#QUESTIONS:
+questions.jsp?action=create&demographic=[demographic]&responseType=[rtype]&question=[question]&type=[type]
+	if type == comparitive:
+		&compareTo=[questID]
+		
+questions.jsp?action=list&pollID=[pollID]
+questions.jsp?action=delete&questID=[questID]
+questions.jsp?action=update(see create)&questID=[questID]
+
+#RESPONSES:
+response.jsp?action=create&questID=[questID]&weight=[weight]&keypad=[keypad]&response=[response]&weight=[weight]
+	if weight is used, it should create a row in Rankings with responseID,
+response.jsp?action=list&questID=[questID]
+response.jsp?action=delete&responseID=[responseID]
+response.jsp?action=update&responseID=[responseID]&(see create)

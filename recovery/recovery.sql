@@ -4,8 +4,8 @@
 
 CREATE TABLE Questions(
 	questID NUMBER(6) PRIMARY KEY,
-	demographic CHAR(1),
-	responseType CHAR(1),
+	demographic CHAR(1) NOT NULL,
+	responseType CHAR(1) NOT NULL,
 	question VARCHAR2(255) NOT NULL
 );
 
@@ -14,17 +14,14 @@ CREATE TABLE Comparitives(
 	compareTo NUMBER(6)
 );
 
-CREATE TABLE Rankings(
-	questID NUMBER(6) PRIMARY KEY,
-	responseID NUMBER(6) PRIMARY KEY,
-	weight NUMBER(6)
-);
-
 CREATE TABLE Responses(
 	reponseID NUMBER(6) PRIMARY KEY,
 	keypad CHAR(1),
 	response VARCHAR2(255) NOT NULL,
-	questID NUMBER(6) NOT NULL
+	weight NUMBER(6), 		-- Bad practice but meh
+	compareTo NUMBER(6), 	-- Let's just call it Denormalization for performance tuning
+	questID NUMBER(6) NOT NULL,
+	correct CHAR(1) NOT NULL
 );
 
 CREATE TABLE Answers(
@@ -51,6 +48,6 @@ CREATE TABLE Users(
 CREATE TABLE Assigned(
 	userID NUMBER(6) PRIMARY KEY,
 	pollID NUMBER(6) PRIMARY KEY,
-	role VARCHAR(255),
+	role VARCHAR(255) NOT NULL,
 	CONSTRAINT userRole CHECK (role IN ('Web User', 'Key User', 'Poll Master', 'Poll Creator', 'Poll Admin', 'System Admin'))
 );

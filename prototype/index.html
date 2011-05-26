@@ -1,0 +1,71 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="assets/scripts.js"></script>
+<link href="assets/style.css" type="text/css" rel="stylesheet" />
+<title>dbPOLL - Prototype</title>
+</head>
+<body>
+
+<h1>Add a Poll</h1>
+<input type="text" name="pname" id="pname" />
+
+<h2>Questions</h2>
+<button id="newq">New Question</button>
+<!-- List of Questions, should be saved in the DB as soon as New Question is clicked -->
+<div class="question">
+	<button class="remq">x</button>
+	<input type="text" name="qname" id="qname" />
+
+	<select id="qformat">
+		<option>Multiple Choice</option>
+		<option>Short Answer</option>
+	</select>
+
+	<label><input type="checkbox" class="comparitivebox" /> Comparitive</label>
+	<label><input type="checkbox" class="rankingbox" /> Ranking</label>
+	<label><input type="checkbox" class="demographicbox"/> Demographic</label>
+	<button class="saveq">Save</button>
+
+	<div class="responses">
+
+	<blockquote id="template">
+		<div class="comparitive">
+			<h3>Comparitive</h3>
+
+			<!-- this select should have a list of previous questions created in this very form
+				 hence why they need to be stored immediately and this select updated -->
+			<select>
+				<option></option>
+			</select>
+		</div>
+
+		<h3>Responses</h3>
+		<!-- list of responses. limit to 10 for multiple choice -->
+		<button class="newr">New Response</button>
+		
+		<div class="response">
+			<button class="remr">x</button>
+			<input type="text" />
+			<select class="keypad">
+				<option value="NULL">---</option>
+				<option value="1">A 1</option>
+				<option value="2">B 2</option>
+				<option value="3">C 3</option>
+				<option value="4">D 4</option>
+				<option value="5">E 5</option>
+				<option value="6">F 6</option>
+				<option value="7">G 7</option>
+				<option value="8">H 8</option>
+				<option value="9">I 9</option>
+				<option value="0">J 0</option>
+			</select>
+			<label class="correct"><input type="checkbox" /> correct</label>
+			<label class="ranking"><input type="text" size="2" /> weight</label>
+		</div>
+	</blockquote>
+	</div>
+</div>
+
+</body>
+</html>
