@@ -31,7 +31,13 @@ $(function() {
 	*/
 	$("button.newr").live("click", function() {
 		var parent = $(this).next(),
-			response = $(this).next().children(":first-child");
+			response = $(this).next().children(":first-child"),
+			type = $(this).parent().parent().parent().children("select.qformat");
+			
+		if(type.val() == "M" && $(this).next().children("div.response").size() >= 10) {
+			return;
+		}
+		
 		response.clone().appendTo(parent);
 	});
 	
@@ -49,8 +55,27 @@ $(function() {
 	* Cancel a response
 	*/
 	$("button.remr").live("click", function() {
-		if($(this).parent().parent().children("div").size() > 1) {
+		if($(this).parent().parent().children("div.response").size() > 1) {
 			$(this).parent().remove();
 		}
 	});
+	
+	/**
+	* Save a question
+	*/
+	$("button.saveq").live("click", function() {
+		console.log(grabQuestionData($(this).parent()));
+	});
+	
+	/**
+	* Method to find out all the information to
+	* insert into the database from a question DIV.
+	*/
+	function grabQuestionData(question) {
+		var data = {};
+		data.demographic = question.find("input.demographicbox")[0].checked;
+		data.responseType = question.find("select.qformat").val();
+		data.question = question.find("input.qname").val();
+		return data;
+	}
 });
