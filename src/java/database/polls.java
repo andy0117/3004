@@ -175,7 +175,20 @@ public class polls {
                 return -1;
             } 
             getOracleConnection();
-            String query= "DELETE FROM Polls WHERE pollID=" + getPollID();
+            
+            /* Delete questions under poll */
+            String query= "SELECT questID FROM Questions WHERE pollID=" + getPollID();
+            ResultSet resultSet = runQuery(query);
+            
+            /* Calls each question to delete itself and its children */
+            while (resultSet.next()) {
+                questions temp = new questions();
+                temp.setQuestID(resultSet.getInt("questID"));
+                temp.deleteQuestion();
+            }
+            
+            /* Delete poll */
+            query= "DELETE FROM Polls WHERE pollID=" + getPollID();
             runQuery(query);
             closeOracleConnection();
             return 0;

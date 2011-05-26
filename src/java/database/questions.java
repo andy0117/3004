@@ -182,7 +182,20 @@ public class questions {
                 return -1;
             } 
             getOracleConnection();
-            String query= "DELETE FROM Questions WHERE questID=" + getQuestID();
+            
+            /* Delete responses under question */
+            String query= "SELECT responsesID FROM Responses WHERE questID=" + getQuestID();
+            ResultSet resultSet = runQuery(query);
+            
+            /* Calls each response to delete itself and its children */
+            while (resultSet.next()) {
+                responses temp = new responses();
+                temp.setQuestID(resultSet.getInt("responsesID"));
+                temp.deleteResponse();
+            }
+            
+            /* Delete question */
+            query= "DELETE FROM Questions WHERE questID=" + getQuestID();
             runQuery(query);
             closeOracleConnection();
             return 0;
