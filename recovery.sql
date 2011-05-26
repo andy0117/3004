@@ -30,7 +30,7 @@ questID NUMBER(6) NOT NULL
 CREATE TABLE Polls(
 pollID NUMBER(6) PRIMARY KEY,
 pollName VARCHAR2(255) NOT NULL,
-location VARCHAR2(255) NOT NULL,
+location VARCHAR2(255) NOT NULL
 );
 
 CREATE TABLE Users(
@@ -42,8 +42,9 @@ location VARCHAR2(255) NOT NULL
 );
 
 CREATE TABLE Assigned(
-userID NUMBER(6) PRIMARY KEY,
-pollID NUMBER(6) PRIMARY KEY,
+userID NUMBER(6) NOT NULL,
+pollID NUMBER(6) NOT NULL,
 role VARCHAR(255) NOT NULL,
-CONSTRAINT userRole CHECK (role IN ('Web User', 'Key User', 'Poll Master', 'Poll Creator', 'Poll Admin', 'System Admin'))
+CONSTRAINT userRole CHECK (role IN ('Web User', 'Key User', 'Poll Master', 'Poll Creator', 'Poll Admin', 'System Admin')),
+CONSTRAINT pk_Assigned PRIMARY KEY (userID, pollID)
 );
